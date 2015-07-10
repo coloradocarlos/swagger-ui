@@ -57,12 +57,14 @@
       });
 
       function addApiKeyAuthorization(){
+        /* disable api key authorization - cp
         var key = encodeURIComponent($('#input_apiKey')[0].value);
         if(key && key.trim() != "") {
             var apiKeyAuth = new SwaggerClient.ApiKeyAuthorization("api_key", key, "query");
             window.swaggerUi.api.clientAuthorizations.add("api_key", apiKeyAuth);
             log("added key " + key);
         }
+        */
       }
 
       $('#input_apiKey').change(addApiKeyAuthorization);
@@ -86,9 +88,9 @@
         var pass = $('#input_pass')[0].value;
         if ((user && user.trim() != "") || (pass && pass.trim() != "")) {
           log("added basic auth");
-          window.authorizations.add(
+          swaggerUi.api.clientAuthorizations.add(
             "Basic",
-            new PasswordAuthorization("basic_auth", user, pass)
+            new SwaggerClient.PasswordAuthorization("basic_auth", user, pass)
             );
         }
       }
